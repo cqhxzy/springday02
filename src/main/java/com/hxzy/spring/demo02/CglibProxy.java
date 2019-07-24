@@ -1,13 +1,18 @@
 package com.hxzy.spring.demo02;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
 
+/**
+ * 通过Cglib实现动态代理
+ */
 public class CglibProxy implements MethodInterceptor {
-
+    private static Logger logger = LoggerFactory.getLogger(CglibProxy.class);
     private UserDao userDao;
 
     public CglibProxy(UserDao userDao) {
@@ -15,6 +20,7 @@ public class CglibProxy implements MethodInterceptor {
     }
 
     public UserDao createProxy(){
+        logger.info("通过cglib创建代理对象");
 
         //创建cglib核心对象
         Enhancer enhancer = new Enhancer();

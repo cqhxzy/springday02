@@ -3,6 +3,7 @@ package com.hxzy.spring.demo02;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.hamcrest.Matchers.*;
 
 public class CglibProxyTest {
 
@@ -17,6 +18,11 @@ public class CglibProxyTest {
         UserDao proxy = new CglibProxy(dao).createProxy();
         proxy.save();
 
+    }
+
+    @Test
+    public void demo03(){
+        assertThat(new Double(5),closeTo(new Double(5),new Double(0.3)));
     }
 
 }
